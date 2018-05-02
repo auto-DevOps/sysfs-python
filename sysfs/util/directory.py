@@ -20,6 +20,9 @@ class DirectoryMixin(object):
 
     def read_file(self, name, mode='rb'):
         path = os.path.join(self.path, name)
+        if not os.path.exists(path):
+            return None
+
         return open(path, mode).read()
 
     def read_bytes(self, name):

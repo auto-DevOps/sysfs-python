@@ -39,6 +39,11 @@ class BlockDevice(DirectoryMixin):
         self.path = path or os.path.join(self.SYS_BLOCK_PATH, name)
 
     @cached_property
+    def has_device(self):
+        path = os.path.join(self.path, 'device')
+        return os.path.exists(path)
+
+    @cached_property
     def dev(self):
         return self.read_string('dev')
 
